@@ -1,0 +1,15 @@
+<h1> {{title}} </h1>
+<ul class="news">
+    <li *ngFor="let oneNews of news"
+    [class.selected]="oneNews === selectedNews"
+    (click)="onSelect(oneNews)">
+    <span class="badge">{{oneNews.text}}</span> {{oneNews.author}} {{oneNews.dateTime}}
+    </li>
+</ul>
+<div *ngIf="selectedNews">
+    <h2>News details!</h2>
+    <div><label>text: </label>{{selectedNews.text}}</div>
+    <div>
+    <label>author: {{selectedNews.author}} </label>
+    </div>
+</div>
