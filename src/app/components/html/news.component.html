@@ -1,15 +1,21 @@
 <h1> {{title}} </h1>
 <ul class="news">
-    <li *ngFor="let oneNews of news"
+    <div *ngFor="let oneNews of news"
     [class.selected]="oneNews === selectedNews"
-    (click)="onSelect(oneNews)">
-    <span class="badge">{{oneNews.text}}</span> {{oneNews.author}} {{oneNews.dateTime}}
-    </li>
-</ul>
-<div *ngIf="selectedNews">
-    <h2>News details!</h2>
-    <div><label>text: </label>{{selectedNews.text}}</div>
-    <div>
-    <label>author: {{selectedNews.author}} </label>
+    (click)="onSelect(oneNews)"
+    [routerLink]="['/news', oneNews.id]">
+    <div class="media">
+        <div class="d-flex align-self-start mr-3">
+            {{oneNews.dateTime}}
+        </div>
+        <div class="media-body">
+            <h5 class="mt-0">{{oneNews.title}}</h5>
+            <p>{{oneNews.shortDescription}}
+        </div>
     </div>
-</div>
+    {{oneNews.author}} {{oneNews.dateTime}}
+    <br><br>
+    </div>
+    <br>
+</ul>
+

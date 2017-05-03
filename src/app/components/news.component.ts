@@ -24,4 +24,7 @@ export class NewsComponent implements OnInit {
   ngOnInit(): void {
     this.getNews();
   }
+  onSelect(news: News): void {
+    this.selectedNews = news;
+  }
 }
