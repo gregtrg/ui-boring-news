@@ -15,11 +15,17 @@ export class NewsService {
     getNews(): Promise<News[]> {
     return this.http.get(this.newsUrl)
                 .toPromise()
-                .then(response => {
-                  let some : News[] = response.json();
-                  console.log(some[1].text);
-                  return response.json() as News[];})
+                .then(response => response.json() as News[])
                 .catch(this.handleError);
+    }
+    getConcretNews(id : number) : Promise<News> {
+      const url = `${this.newsUrl}/${id}`;
+      return this.http.get(url)
+        .toPromise()
+        .then(response => {
+          console.log(response.json());
+          return response.json() as News})
+        .catch(this.handleError);
     }
     
     private handleError(error: any): Promise<any> {
